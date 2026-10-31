@@ -81,7 +81,7 @@
         <div class="p-l-10 p-r-10 p-t-10 col s12 m3 l2">
 
             <button id="add_user_button"
-                class="waves-effect waves-light btn blue darken-2 p-l-30 p-r-30 w-100 rounded_pill flex-c">
+                class="waves-effect waves-light btn blue darken-2 p-l-30 p-r-30 w-100 rounded_pill flex-c" x-on:click="showAddModal = true">
 
                 <i class="material-icons m-r-5"></i>
                 Add User
@@ -126,32 +126,20 @@
             
     </template>
 
-
-
     <section class="user_list_section" x-init="getUsers">
 
         <ul class="collapsible hide-on-med-and-up">
-            <template x-for="user in users">
+            <template x-for="user in pageUsers">
                 <li class="user_list_item">
-
                     <div class="collapsible-header">
-
                         <i class="material-icons blue-text darken-2 user_list_arrow_icon">arrow_drop_down_circle</i>
                         <span x-text="user.name"></span>
-
                     </div>
-
                     <div class="collapsible-body">
-
                         <div class="p-all-5">
-
                             <span class="f-blod">Username : </span>
-
                             <span x-text="user.username"></span>
-
                         </div>
-
-
                         <div class="p-all-5">
 
                             <span class="f-blod">Email : </span>
@@ -199,7 +187,7 @@
                 </thead>
 
                 <tbody class="desktop_table_body">
-                    <template x-for="user in users">
+                    <template x-for="user in pageUsers">
                         <tr>
                             <td x-text="user.id"></td>
                             <td x-text="user.name"></td>
@@ -244,8 +232,8 @@
 
 
 
-    <div class="add_user_modal_back dis-none"></div>
-    <div class="add_user_modal container rounded_top_30 trans-0-3 ">
+    <div class="add_user_modal_back" x-show="showAddModal" x-transition  x-on:click="showAddModal = false"></div>
+    <div class="add_user_modal container rounded_top_30 trans-0-3 "x-bind:class="showAddModal && 'show'">
         <div class="row p-t-10 p-b-10 p-r-40 p-l-40 center-on-small-only">
             <h5>
                 <i class="material-icons m-r-10 m-l-10 pos-relative top-4">person_add</i>
